@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import ProductList from './components/ProductList';
+import Cart from './components/Cart';
+import { CartProvider } from './context/CartContext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ThankYou from './components/Thankyou'; 
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div style={{ display: 'flex', gap: 40, padding: 20 }}>
+                <div style={{ flex: 2 }}>
+                  <h1>🛍️ Curiate Shopify Store</h1>
+                  <ProductList />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <Cart />
+                </div>
+              </div>
+            }
+          />
+          <Route path="/thank-you" element={<ThankYou />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
-}
+};
 
 export default App;

@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# 🛍️ Curiate Shopify Product Page
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a custom Shopify Storefront built with React and Apollo Client, showcasing live product data using the Storefront API.
 
-## Available Scripts
+Folder contains shopify-product-page that includes multiple files int it. These are as follow--
 
-In the project directory, you can run:
+src/
+├── components/
+│   ├── ProductList.js
+│   ├── Cart.js
+│   ├── Checkout.js
+│   └── ThankYou.js
+├── context/
+│   └── CartContext.js
+├── App.js
+├── index.js
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🔧 Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React.js
+- Apollo Client (GraphQL)
+- Shopify Storefront API
+- Context API for Cart Management
 
-### `npm test`
+## 🚀 Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Fetch live product data from Shopify
+- Dynamic category filtering
+- Product search by name
+- Sort by name or price
+- Simulated cart and checkout flow
+- Multi-variant product support (e.g., sizes)
+- CSV-imported products and placeholder images
 
-### `npm run build`
+## 🌐 Storefront API Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Create a development store in Shopify
+2. Enable custom app development
+3. Create a custom app and configure Storefront API permissions
+4. Get the Storefront Access Token
+5. Set up Apollo Client:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```js
+const client = new ApolloClient({
+  uri: 'https://your-store-name.myshopify.com/api/2023-01/graphql.json',
+  headers: {
+    'X-Shopify-Storefront-Access-Token': 'your-token-here',
+  },
+  cache: new InMemoryCache(),
+});
